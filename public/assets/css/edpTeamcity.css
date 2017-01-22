@@ -1,0 +1,760 @@
+/************************************************************************************/
+/*                               COMMON                                             */
+/************************************************************************************/
+
+.failure {
+     border-color: black;
+     color: white;
+     background: #C05151;
+ }
+
+.test-failure {
+    border-color: black;
+    color: white;
+    background: #D67733;
+}
+
+.success {
+    border-color: black;
+    color: white;
+    background: #4E824E;
+}
+
+.running {
+    border-color: black;
+    color: black;
+    background: lightgrey;
+}
+
+/*.shadow {*/
+    /*box-shadow : 3px 3px 2px 1px #D3D3D3;*/
+/*}*/
+
+.jqplot-data-label{
+    color:white;
+    font-weight: bold;
+}
+
+/************************************************************************************/
+/*                               ICONS & SPINNER                                    */
+/************************************************************************************/
+/*noinspection CssUnknownTarget*/
+@font-face {
+    font-family: 'icomoon';
+    src:url('/edp-teamcity/assets/fonts/icomoon.eot?-9vtuxj');
+    src:url('/edp-teamcity/assets/fonts/icomoon.eot?#iefix-9vtuxj') format('embedded-opentype'),
+    url('/edp-teamcity/assets/fonts/icomoon.woff?-9vtuxj') format('woff'),
+    url('/edp-teamcity/assets/fonts/icomoon.ttf?-9vtuxj') format('truetype'),
+    url('/edp-teamcity/assets/fonts/icomoon.svg?-9vtuxj#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-tick:before {
+    font-size: 2em !important;
+    content: "\e603";
+}
+.icon-spinner:before {
+    content: "\e600";
+}
+.icon-notification:before {
+    font-size: 2em !important;
+    content: "\e604";
+}
+.icon-clock:before {
+    content: "\e601";
+}
+.icon-user:before {
+    content: "\e602";
+}
+
+[class^="kb-icon-"], [class*=" kb-icon-"] {
+    font-family: 'icomoon';
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.kb-icon-tick:before {
+    font-size: 2em !important;
+    content: "\e603";
+}
+.kb-icon-spinner:before {
+    content: "\e600";
+}
+.kb-icon-notification:before {
+    font-size: 2em !important;
+    content: "\e604";
+}
+.kb-icon-clock:before {
+    content: "\e601";
+}
+.kb-icon-user:before {
+    content: "\e602";
+}
+
+/*noinspection ALL*/
+@-webkit-keyframes anim-rotate {
+    0% {
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -ms-transform: rotate(0);
+        -o-transform: rotate(0);
+        transform: rotate(0);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        -moz-transform: rotate(360deg);
+        -ms-transform: rotate(360deg);
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.spinner {
+    display: inline-block;
+    font-size: 2em !important;
+    line-height: 1;
+    margin-left: 0.2em;
+    -webkit-animation: anim-rotate 2s infinite linear;
+    -moz-animation: anim-rotate 2s infinite linear;
+    -o-animation: anim-rotate 2s infinite linear;
+    animation: anim-rotate 2s infinite linear;
+    color: #ffffff;
+    text-shadow: 0 0 .25em rgba(255, 255, 255, .3);
+}
+
+.spinner-steps {
+    -webkit-animation: anim-rotate 1s infinite steps(8);
+    -moz-animation: anim-rotate 1s infinite steps(8);
+    -o-animation: anim-rotate 1s infinite steps(8);
+    animation: anim-rotate 1s infinite steps(8);
+}
+
+
+.realtime-recent-combined {
+    display: flex;
+    flex-direction: row;
+    height:100%;
+    overflow:hidden;
+}
+
+/************************************************************************************/
+/*                                REALTIME DETAILS                                  */
+/************************************************************************************/
+
+.realtime-container{
+    display: flex;
+    flex-direction: column;
+    height:200%;
+    border-right:2px solid white;
+    padding-right:10px;
+    width: 35%;
+    max-width:35%;
+    transition:2s all;
+}
+
+.realtime-container.closed {
+    width:0;
+    border-right:none;
+    transition:2s all;
+}
+
+.realtime-container .title {
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:1.5em;
+}
+
+.realtime-container .server-title {
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:1.2em;
+    margin-top:5px;
+    border-top : 1px solid lightgray;
+}
+
+.running-builds{
+    min-height: 25%;
+}
+
+.queued-builds{
+    border-top:2px solid white;
+}
+
+.nothing-happening {
+    width:100%;
+    margin-top:50px;
+    font-size:1em;
+    text-align: center;
+}
+
+.vcontainer {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.inner-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+}
+
+.running-build {
+    display: flex;
+    text-align: left;
+    margin-top: 5px;
+    flex-direction: row;
+    width: 100%;
+}
+
+.running-build .icon{
+    width: 15%;
+    margin: auto;
+}
+
+.running-build .project-progress {
+    height : 30%;
+    width : 100%;
+}
+
+.running-build .project-details{
+    width:100%;
+    display: flex;
+    flex-direction : row;
+    height:65%;
+}
+
+.queued-build .project-details{
+    width:100%;
+    display: flex;
+    flex-direction : row;
+    height:100%;
+}
+
+div.dots {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.running-build .project-name {
+    font-size: 2em;
+    color: white;
+    display: inline-block;
+    width: 60%;
+    padding-left: 5px;
+}
+
+.realtime-container .build-name {
+    font-size: 1em;
+    color: white;
+    display: inline-block;
+    width:100%;
+}
+
+.realtime-container .build-details {
+    display : flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.build-details .row {
+    display : flex;
+    flex-direction: row;
+    width:100%;
+    margin : 0;
+}
+
+.row .status-text {
+    width:100%;
+    text-align: left;
+}
+
+.hidden-panel {
+    width:0;
+}
+
+.running-build .project-progress{
+    padding:0 5px 0 5px;
+}
+
+.progress {
+    border-radius: 0;
+}
+
+@-webkit-keyframes moving-gradient {
+    0% { background-position: left bottom; }
+    100% { background-position: right bottom; }
+}
+
+@-moz-keyframes moving-gradient {
+    0% { background-position: left bottom; }
+    100% { background-position: right bottom; }
+}
+
+.half {
+    overflow-x: hidden;
+}
+
+.half .bar {
+    width: 200%;
+}
+
+.half.full .bar {
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+}
+
+.bar {
+    background: -webkit-linear-gradient(
+        left,
+        #2b2b2b 0%,
+        #9b9b9b 50%,
+        #2b2b2b 100%);
+
+    background: -moz-linear-gradient(
+            left,
+            #2b2b2b 0%,
+            #9b9b9b 50%,
+            #2b2b2b 100%);
+
+    -webkit-background-size: 50% 100%;
+    background-size: 50% 100%;
+
+    -webkit-animation-name: moving-gradient;
+    -moz-animation-name: moving-gradient;
+
+    -webkit-animation-duration: 0.5s;
+    -moz-animation-duration: 0.5s;
+
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation-iteration-count: infinite;
+
+    -webkit-animation-timing-function: linear;
+    -moz-animation-timing-function: linear;
+}
+
+
+
+.bar .percent {
+    margin-left : 25%;
+}
+
+.bar {
+    -webkit-animation-duration: 2s;
+}
+
+.failure .progress-bar {
+    color:white;
+    font-weight: bold;
+    background-color: darkred;
+}
+
+.success .progress-bar {
+    color:white;
+    font-weight: bold;
+    background-color: darkgreen;
+}
+
+
+.hanging-build .progress-bar {
+    background-color: orangered;
+}
+
+.windows-bar .gradient-overlay {
+    position: absolute;
+    background-image: -webkit-linear-gradient(
+            top,
+            rgba(255, 255, 255, .8) 0%,
+            rgba(255, 255, 255, .4) 50%,
+            rgba(255, 255, 255, 0) 50%,
+            rgba(255, 255, 255, .2) 100%
+    );
+}
+
+.queued-build {
+    display: flex;
+    height: 9%;
+    text-align: left;
+    margin-top: 5px;
+    flex-direction: row;
+    width: 100%;
+    color: white;
+    background: #0078ae;
+    padding-left:5px;
+}
+
+.queue-details {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height:100%;
+}
+
+.queue-details .project-name {
+    font-size: 2em;
+    color: white;
+    width: 100%;
+    height:60%;
+}
+
+.queue-details .time-details {
+    font-size: 1em;
+    color: white;
+    width: 100%;
+    height:40%;
+}
+
+.stuck-in-queue {
+    background-color : #C05151;
+}
+
+.buildName {
+    margin-top: -15px;
+    font-size: 2em;
+    color: white;
+}
+
+.realtime-container.ng-hide-add .realtime-container.ng-hide-remove {
+    transition : 0s linear all;
+}
+
+.realtime-container.ng-hide-add-active,.realtime-container.ng-hide-remove-active{
+    transition: 1s linear all;
+}
+
+.realtime-container.ng-hide-add {
+    display: block!important;
+    left : -100%;
+}
+
+.realtime-container.ng-hide-add.ng-hide-add-active {
+    display: block!important;
+    left:0;
+}
+
+/*.realtime-container.ng-show-remove {*/
+
+/*}*/
+
+/*.realtime-container.ng-show-remove.ng-show-remove-active {*/
+
+/*}*/
+
+/************************************************************************************/
+/*                                BUILD STATUS                                      */
+/************************************************************************************/
+
+.recent-builds-container{
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    border-right:2px solid white;
+    padding:0 10px 0 10px;
+    width: 65%;
+    transition:2s all;
+}
+
+.recent-builds-container.expanded {
+    width:100%;
+    transition:2s all;
+}
+
+.recent-builds-container .title {
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:1.5em;
+}
+
+.finished-build {
+    text-align: left;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: row;
+    height: 10%;
+    width: 100%;
+
+}
+
+.finished-build .project-details {
+    white-space: nowrap;
+    overflow: hidden;
+    width:65%;
+    display:flex;
+    flex-direction: column;
+    height:100%;
+}
+
+.finished-build .build-details {
+    width:30%;
+    height:100%;
+}
+
+.finished-build .icon {
+    width: 8%;
+    margin: auto;
+    text-align: center;
+}
+
+.finished-build .project-name {
+    font-size: xx-large;
+    color: white;
+    height:55%;
+}
+
+.finished-build .build-name {
+    font-size: 2em;
+    color: white;
+    height:45%;
+}
+
+.finished-build .timestamp {
+    width: 80%;
+    text-align: right;
+}
+
+.finished-build .developer {
+    width: 80%;
+    text-align: right;
+}
+
+.build-details .build-icon {
+    width:20%;
+    text-align: center;
+    padding-top:5px;
+}
+
+
+/************************************************************************************/
+/*                                BUILD HEALTH                                      */
+/************************************************************************************/
+
+.health-container{
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    height:100%;
+    overflow:hidden;
+    /*padding:0 10px 0 10px;*/
+}
+
+.health-container .title {
+    width:100%;
+    text-align: center;
+    font-weight: bold;
+    font-size:1.5em;
+}
+
+.health-section {
+    height: 33%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.health-section.top-border {
+    border-top : 2px solid white;
+}
+
+.health-section .timespan {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    transform: rotate(270deg);
+    transform-origin: top left;
+    position: absolute;
+    left:0;
+}
+
+.timespan.today {
+    top:26%;
+}
+
+.timespan.week {
+    top:63%;
+}
+
+.timespan.month {
+    top:97%;
+}
+
+.health-section .buildcount {
+    text-align: center;
+    font-weight: bold;
+    font-size:1.1em;
+    position: absolute;
+    right:5%;
+}
+
+.buildcount.today {
+    top:20%;
+}
+
+.buildcount.week {
+    top:55%;
+}
+
+.buildcount.month {
+    top:90%;
+}
+
+.health-section .graph {
+    width:90%;
+    margin-left:10%;
+}
+
+.jqplot-data-label {
+    font-size:20px;
+}
+
+.health-section .values {
+    width:100%;
+}
+
+.loading {
+    width:100%;
+    text-align: center;
+    font-size:medium;
+    line-height: 200px;
+}
+
+/*---------------*/
+
+.animate-repeat.ng-enter,
+.animate-repeat.ng-leave {
+    display: block;
+    position: relative;
+}
+
+.animate-repeat.ng-enter {
+    -webkit-animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    animation: enter 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+}
+
+.animate-repeat.ng-leave {
+    -webkit-animation: leave 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+    animation: leave 600ms cubic-bezier(0.445, 0.050, 0.550, 0.950);
+}
+
+/*.animate-repeat.ng-enter,*/
+/*.animate-repeat.ng-leave {*/
+    /*-webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;*/
+    /*-moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;*/
+    /*-ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;*/
+    /*-o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;*/
+    /*transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;*/
+    /*position: relative;*/
+    /*display: block;*/
+/*}*/
+
+/*.animate-repeat.ng-enter,*/
+/*.animate-repeat.ng-leave.ng-leave-active,{*/
+    /*-webkit-transform: scaleY(0);*/
+    /*-moz-transform: scaleY(0);*/
+    /*-ms-transform: scaleY(0);*/
+    /*-o-transform: scaleY(0);*/
+    /*transform: scaleY(0);*/
+    /*height: 0px;*/
+    /*opacity: 0;*/
+/*}*/
+
+/*.animate-repeat.ng-leave,*/
+/*.animate-repeat.ng-enter.ng-enter-active,{*/
+    /*-webkit-transform: scaleY(1);*/
+    /*-moz-transform: scaleY(1);*/
+    /*-ms-transform: scaleY(1);*/
+    /*-o-transform: scaleY(1);*/
+    /*transform: scaleY(1);*/
+    /*height: 30px;*/
+    /*opacity: 1;*/
+/*}*/
+
+@-webkit-keyframes enter {
+    from {
+        opacity: 0;
+        height: 0;
+        top: -70px;
+    }
+    75% {
+        top: 15px;
+    }
+    to {
+        opacity: 1;
+        height: 30px;
+        top: 0;
+    }
+}
+@keyframes enter {
+    from {
+        opacity: 0;
+        height: 0;
+        top: -70px;
+    }
+    75% {
+        top: 15px;
+    }
+    to {
+        opacity: 1;
+        height: 30px;
+        top: 0;
+    }
+}
+
+
+@-webkit-keyframes leave {
+    to {
+        opacity: 0;
+        height: 0;
+        top: -70px;
+    }
+    25% {
+        top: 15px;
+    }
+    from {
+        opacity: 1;
+        height: 30px;
+        top: 0;
+    }
+}
+@keyframes leave {
+    to {
+        opacity: 0;
+        height: 0;
+        top: -70px;
+    }
+    25% {
+        top: 15px;
+    }
+    from {
+        opacity: 1;
+        height: 30px;
+        top: 0;
+    }
+}
+
+

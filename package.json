@@ -1,0 +1,44 @@
+{
+    "name": "edp-teamcity",
+    "version": "0.0.1",
+    "description": "A TeamCity plugin for the DM Dashboard",
+    "author": {
+        "name": "Duane McKibbin <duane.mckibbin@gmail.com>"
+    },
+    "mean": "0.3.3",
+    "engines": {
+        "node": "0.10.x",
+        "npm": "1.4.x"
+    },
+    "dependencies": {},
+    "license": "MIT",
+    "dashboard" : {
+        "displayName": "Teamcity",
+        "enabled" : false,
+        "module": "server/teamcity",
+        "widgets" : [
+            {
+                "name" : "Build Status",
+                "description" : "Shows the last 7 builds on TeamCity, highlighting failed builds in red",
+                "directive" : "teamcity-build-status"
+            },
+            {
+                "name" : "Teamcity Health",
+                "description" : "Shows pie charts for number of successful/failed builds",
+                "directive" : "teamcity-health"
+            }
+
+        ],
+        "defaultSettings" : {
+            "servers" : [
+                {
+                    "active" : false,
+                    "name" : "Default",
+                    "password" : "",
+                    "username" : "",
+                    "url" : "http://localhost"
+                }
+            ]            
+        }
+    }
+}

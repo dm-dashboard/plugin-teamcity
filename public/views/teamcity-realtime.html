@@ -1,0 +1,67 @@
+<div class="realtime-container">
+    <div class="running-builds">
+        <div class="title">Running Now</div>
+        <div class="nothing-happening" ng-show="realtimeStatus.running.length === 0">
+            No builds running currently
+        </div>
+
+        <div ng-repeat="build in realtimeStatus.running" class="running-build shadow {{build.status.toLowerCase()}}"
+             style="height:{{rt_buildHeight}}px">
+            <div class="vcontainer">
+                <div class="project-details">
+                    <div class="project-name dots" style="font-size:{{rt_projectFontSize}}px">{{build.project}}</div>
+                    <div class="build-details" style="font-size:{{rt_smallerTextFontSize}}px">
+                        <div class="row">
+                            <div class="build-name dots">{{build.build}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="status-text dots">{{build.runningInfo.currentStageText}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-progress">
+                    <progressbar max="100" value="build.runningInfo.percentageComplete">{{build.runningInfo
+                        .percentageComplete}}%</progressbar>
+                    <!--<div class="progress">-->
+                        <!--<div class="progress-bar" role="progressbar" style="width: {{build.runningInfo.percentageComplete}}%;">-->
+                            <!--<div class="half full">-->
+                                <!--<div class="bar">-->
+                                    <!--<span class="percent">{{build.runningInfo.percentageComplete}}%</span>-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="queued-builds">
+        <div class="title">Queued</div>
+        <div class="nothing-happening" ng-show="realtimeStatus.queue.length === 0">
+            No builds queued currently
+        </div>
+        <div ng-repeat="build in realtimeStatus.queue" class="queued-build shadow" style="height:{{rt_buildHeight}}px" ng-class="{'stuck-in-queue' : build.compatibleAgents === 0}">
+            <div class="vcontainer">
+                <div class="project-details">
+                    <div class="queue-details">
+                        <div class="project-name dots " style="font-size:{{rt_projectFontSize}}px">{{build.project}}</div>
+                        <div class="time-details dots"  style="font-size:{{rt_smallerTextFontSize}}px"><span class="icon-clock"></span>&nbsp;Queued {{timeAgo(build.queuedDate)}}</div>
+                    </div>
+                    <div class="build-details" style="font-size:{{rt_smallerTextFontSize}}px">
+                        <div class="row">
+                            <div class="build-name dots">{{build.build}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="build-name dots"><span class="icon-user"></span>&nbsp;{{build.developer}}</div>
+                        </div>
+                        <div class="row">
+                            <div class="status-text dots">{{build.compatibleAgents}} compatible agents</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

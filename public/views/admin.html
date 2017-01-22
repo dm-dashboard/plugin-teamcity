@@ -1,0 +1,85 @@
+<div class="container-fluid" data-ng-controller="EdpTeamcityAdminController">
+    <h3>TeamCity Plugin</h3>
+
+    <h4 ng-hide="finishedLoading">Loading...</h4>
+    <form ng-submit="save()" class="form-horizontal" role="form" ng-show="finishedLoading">
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Username</th>
+                <th>Password</th>
+                <th>Active</th>
+                <th>Test</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="server in settings.servers">
+                <td>
+                    <input type="text" class="form-control" ng-model="server.name"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="server.url"/>
+                </td>
+                <td>
+                    <input type="text" class="form-control" ng-model="server.username"/>
+                </td>
+                <td>
+                    <input type="password" class="form-control" ng-model="server.password"/>
+                </td>
+                <td>
+                    <input type="checkbox" class="form-control" ng-model="server.active"/>
+                </td>
+                <td>
+                    <a class="btn btn-success" ng-disabled="!server.active" ng-click="testServer(server)">Test</a><br/>
+                    <span>{{testResults(server)}}</span>
+                </td>
+                <td>
+                    <a class="btn btn-success" ng-disabled="!server.active" ng-click="viewServer(server)">Details</a>
+                </td>
+
+                <td><a class="btn btn-danger" ng-click="removeServer(server)">X</a></td>
+            </tr>
+        </table>
+        <span>NOTE: TeamCity versions older than v8 are only partially supported<br/></span>
+        <br/>
+        <div>
+            <button type="button" class="btn btn-info" ng-click="addServer()">Add new server</button>
+            <button type="submit" class="btn btn-default">Save</button><span ng-show="saving">&nbsp;Saving</span>
+        </div>
+
+        <script type="text/ng-template" id="serverDetails.html">
+            <div class="modal-header">
+                <h3 class="modal-title">TeamCity Server: {{server.name}}</h3>
+            </div>
+            <div class="modal-body">
+                <h4>Projects</h4>
+                <ul>
+                    <li ng-repeat="project in server.projects">
+                        {{project.name}}
+                        <ul>
+                            <li ng-repeat="config in project.buildTypes">
+                                {{config.name}}
+                                <span ng-if="config.dependsOn">
+                                    (Depends On: <span ng-repeat="dep in config.dependsOn">{{dep.project}}:{{dep.buildType}}<span ng-if="$index !==config.dependsOn.length-1">, </span></span>)
+                                </span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <h4>Developers</h4>
+                <ul>
+                    <li ng-repeat="dev in server.developers">
+                        {{dev.name}}, last logged in {{dev.lastLogin|date}}
+                    </li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" ng-click="ok()">OK</button>
+            </div>
+        </script>
+
+    </form>
+
+
+</div>

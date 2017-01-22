@@ -1,0 +1,40 @@
+<div class="container-fluid" data-ng-controller="EdpTeamcityLinkUsersController">
+    <h3>TeamCity Developers</h3>
+
+    <form class="form-horizontal" role="form">
+        <select class="form-control" ng-model="selectedServer">
+            <option ng-repeat="server in servers" value="{{server}}">Developers on server: {{server}}</option>
+        </select>
+        <table class="table">
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Linked to</th>
+                <th>Last Login</th>
+            </tr>
+            <tr ng-repeat="user in users">
+                <td>
+                    {{user.username}}
+                </td>
+                <td>
+                    {{user.email}}
+                </td>
+                <td ng-hide="user.linkedUser">
+                    <tags-input ng-model="user.linkedUsers" display-property="username" add-from-autocomplete-only="true" on-tag-added="tagAdded($tag,user)" on-tag-removed="tagRemoved($tag,user)">
+                        <auto-complete source="orphanUsers($query, user)"></auto-complete>
+                    </tags-input>
+                </td>
+                <td>
+                   {{timeAgo(user.lastLogin)}}
+                </td>
+
+            </tr>
+        </table>
+        <br/>
+        <div>
+            <button type="button" class="btn btn-default" ng-click="save()">Save</button><span ng-show="saving">&nbsp;Saving</span>
+        </div>
+
+
+    </form>
+</div>

@@ -1,0 +1,23 @@
+<div class="health-container">
+    <div class="title">Build Health</div>
+    <div class="loading" ng-show="!health">Loading...</div>
+    <div class="health-section" ng-show="health">
+        <div class="timespan today" style="font-size:{{health_value}}px">Today ({{health.today.builds}})</div>
+        <div class="graph" ng-if="showPie" ui-chart="health.today.graph" chart-options="chartOptions"></div>
+    </div>
+
+    <div class="health-section" ng-show="health">
+        <div class="timespan week" style="font-size:{{health_value}}px">This Week ({{health.thisweek.builds}})</div>
+        <div class="graph" ng-if="showPie" ui-chart="health.thisweek.graph" chart-options="chartOptions"></div>
+    </div>
+
+    <div class="health-section" ng-show="health">
+        <div class="timespan month" style="font-size:{{health_value}}px">This Month ({{health.thismonth.builds}})</div>
+        <div class="graph" ng-if="showPie" ui-chart="health.thismonth.graph" chart-options="chartOptions"></div>
+    </div>
+</div>
+
+
+
+
+
